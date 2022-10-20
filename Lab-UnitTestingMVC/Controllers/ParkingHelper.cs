@@ -61,6 +61,30 @@ namespace Lab_UnitTestingMVC.Controllers
             return newPass;
         }
 
+        public void AddVehicleToPass(string passHolderName, string vehicleLicence)
+        {
+            try
+            {
+                Pass currPass = parkingContext.Passes.First(p => p.Purchaser == passHolderName);
+                Vehicle currVehicle = parkingContext.Vehicles.First(v => v.License == vehicleLicence);
+                currPass.Vehicles.Add(currVehicle);
+                if (currPass.Capacity >= currPass.Vehicles.Count)
+                {
+                    parkingContext.SaveChanges();
+                }
+                else
+                {
+                    throw new IndexOutOfRangeException("Pass capacity is out of range");
+                }
+
+            }
+            catch
+            {
+                throw new NullReferenceException("Vehicle or pass not found");
+            }
+
+        }
+
         public void BookParkingSpot()
         {
 
