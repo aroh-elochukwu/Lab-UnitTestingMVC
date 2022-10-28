@@ -18,11 +18,11 @@ namespace Lab_UnitTestingMVCTests
             // Pass Mock Data
             var passData = new List<Pass>
             {
-                new Pass("Elo", 3){ID = 1, Premium = false},
-                new Pass("Mylo", 3){ID = 2, Premium = false },
-                new Pass("Bane", 3){ID = 3, Premium = false},
-                new Pass("Nedu", 3) {ID = 4, Premium = false},
-                new Pass("Usman Dan Fodio", 3) {ID = 5, Premium = false},
+                new Pass("Elo", 3){ID = 1, Premium = true},
+                new Pass("Mylo", 3){ID = 2, Premium = true },
+                new Pass("Bane", 3){ID = 3, Premium = true},
+                new Pass("Nedu", 3) {ID = 4, Premium = true},
+                new Pass("Usman Dan Fodio", 3) {ID = 5, Premium = true},
             }.AsQueryable();
 
             var passMockDbSet = new Mock<DbSet<Pass>>();
@@ -33,7 +33,7 @@ namespace Lab_UnitTestingMVCTests
             passMockDbSet.As<IQueryable<Pass>>().Setup(m => m.GetEnumerator()).Returns(passData.GetEnumerator());
 
             // Parking Spot Mock Data
-            var PSData = new List<ParkingSpot>
+            var ParkingSpotData = new List<ParkingSpot>
             {
                 //Reservation
                 new ParkingSpot{ID = 1, Occupied = false},
